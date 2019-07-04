@@ -1,0 +1,4 @@
+#!/usr/bin/python
+name = raw_input("Your name is?")
+print "Hello," + name
+

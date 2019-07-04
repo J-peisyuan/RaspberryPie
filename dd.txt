@@ -1,0 +1,5 @@
+#!/usr/bin/python
+#coding=utf-8
+zoo = ['貓','狗','獅子','長頸鹿']
+for animal in zoo:
+    print "動物園有" + animal

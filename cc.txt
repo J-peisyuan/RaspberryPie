@@ -1,0 +1,15 @@
+#!/usr/bin/python
+#coding=utf-8
+x = int(raw_input ("請輸入一個數字:"))
+
+if x < 0:
+    x = 0
+    print'輸入小於0，調整為0'
+elif x == 0:
+    print'輸入0'
+elif x == 1:
+    print'輸入1'
+else:
+    print'輸入大於1'
+
+
