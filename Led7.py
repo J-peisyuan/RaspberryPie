@@ -1,18 +1,23 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7-cgi
+#coding=utf-8
 
+import cgi
 import RPi.GPIO as GPIO
-import time
 
-pinBN = 2
+form = cgi.FieldStorage()
+led = form.getvalue('led')
+
+if led is None:
+    led = "1"
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(pinBN,GPIO.IN)
-GPIO.setup(17, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(15, GPIO.OUT)
 
-try:
-    while True:
-        if GPIO.input(pinBN):
-            print "down" 
-        time.sleep(0.1)
-    except KeyboardInterrupt:
-        pass
-GPIO.cleanup() 
+#LED亮滅
+GPIO.output(15, int(led))
+
+#以下兩行CGI專用
+print "Content-type:text/text"
+print
+
+
