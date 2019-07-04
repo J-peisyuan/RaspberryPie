@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<script language="javascript">
+
+function connectToServer() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status ==200) {
+                if (xhttp.responseText.trim() == "L") {
+                    var x = document.getElementById("state");
+                    x.innerHTML = "按鈕已按下";
+                    setTimeout("disappear()",2000);
+                }
+	
+                connectToServer();
+            }
+        
+            else if (this.status == 504) {
+                 // request timeout
+                 connectToServer();
+            }
+        }
+    } 
+           
+    xhttp.open("GET", "/cgi-bin/Led8.py", true);
+    xhttp.send();
+}
+
+function disappear() {
+    var x = document.getElementById("state");
+    x.innerHTML = "偵測中";
+}
+
+</script>
+
+<body onload="connectToServer()">
+
+
+<div>按下樹莓派端的按鈕進測試</div>
+<p/>
+<div id="state" style="color: red">偵測中</div>
+</body>
+</html>
