@@ -1,5 +1,14 @@
-!/usr/bin/python
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(23,GPIO.OUT)
-GPIO.output(23,1)
+from grovepi import *
+import time
+
+port = 5
+pinMode(port, "OUTPUT")
+
+try:
+    while 1:
+        for i in range(256):
+            analogWrite(port, i)
+            time.sleep(0.01)
+
+except:
+    analogWrite(port, 0) 
